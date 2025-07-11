@@ -1,0 +1,8 @@
+pandas
+requests
+beautifulsoup4
+selenium
+openpyxl
+tqdm
+pytest
+flake8
