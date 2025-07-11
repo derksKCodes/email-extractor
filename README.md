@@ -7,21 +7,27 @@ A **Python script to extract email addresses from any website** by crawling Cont
 
 ## 🚀 Features
 
-✅ Crawl **any website** and extract publicly listed email addresses  
-✅ Automatically discovers **Contact** and **About** pages  
-✅ Follows **social media links** (Facebook, Twitter, LinkedIn) for additional email collection  
-✅ Outputs a **clean, deduplicated list of emails** for outreach or data analysis  
-✅ Lightweight and easy to configure for different websites  
+✅ Extract **emails from any website** automatically  
+✅ Crawls **Contact**, **About**, and common subpages if emails aren't on the homepage  
+✅ Extracts emails from **social media links** (Facebook, Twitter, LinkedIn, Instagram) using **Selenium**  
+✅ Supports **JavaScript-rendered sites** via **headless Chrome**  
+✅ Uses **multi-threading for parallel processing**  
+✅ Reads input URLs from an Excel file and writes updated data with extracted emails  
+✅ Deduplicates and filters emails efficiently  
+✅ Lightweight, practical, and scalable
 
 ---
 
 ## 🛠️ Tech Stack
 
 - **Python 3.8+**
+- `pandas` for Excel input/output
 - `requests` for HTTP requests
 - `BeautifulSoup` for HTML parsing
-- `re` for email pattern matching
-- `tqdm` for optional progress bars
+- `re` for regex-based email extraction
+- `selenium` for JavaScript-rendered email scraping
+- `concurrent.futures` for multi-threading
+- `openpyxl` for Excel file handling
 
 ---
 
@@ -77,13 +83,12 @@ python email_crawler.py --url "https://example.com" --depth 2 --output extracted
 ### Example Output
 
 ```
-Found emails:
-- contact@example.com
-- info@example.com
-- support@example.com
+Loaded 200 rows from files/sampleInput.xlsx
+[23/200] Processed: https://example.com -> contact@example.com
+[24/200] No email found: https://anotherexample.com
+...
+Done! Saved updated data to files/rado_sample_with_emails.xlsx
 
-Total emails found: 3
-Results saved to: emails.txt
 ```
 
 ---
@@ -96,7 +101,7 @@ email-crawler/
 ├── email_crawler.py          # Main crawler script
 ├── requirements.txt          # Python dependencies
 ├── README.md                 # Project documentation
-└── examples/
+└── files/
     ├── sample_output.txt     # Example output file
     └── test_urls.txt         # Test URLs for development
 ```
@@ -109,10 +114,10 @@ Create a `config.py` file to customize crawler behavior:
 
 ```python
 # Crawler settings
-USER_AGENT = "Mozilla/5.0 (compatible; EmailCrawler/1.0)"
-REQUEST_DELAY = 1  # Seconds between requests
-MAX_RETRIES = 3
-TIMEOUT = 10
+input_file = 'files/sampleInput.xlsx'            # Your input file
+output_file = 'files/rado_sample_with_emails.xlsx' # Your output file
+max_workers = 5                                  # Number of parallel threads
+
 
 # Email patterns
 EMAIL_PATTERNS = [
@@ -239,9 +244,17 @@ copies or substantial portions of the Software.
 
 For questions, bug reports, or feature requests:
 
-- **GitHub Issues**: [Create an issue](https://github.com/derksKCodes/email-crawler/issues)
-- **Email**: 
-- **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/derks01)
+### Get in Touch
+
+**Derrick** - Software Developer
+
+- 📧 **Email**: [derikkaraja001@gmail.com](mailto:derikkaraja001@gmail.com)
+- 💼 **LinkedIn**: [linkedin.com/in/derks01](https://linkedin.com/in/derks01)
+- 🐱 **GitHub**: [github.com/derksKCodes](https://github.com/derksKCodes)
+- 🌐 **My Portfolio**: [My Portfolio](https://my-portfolio-project-dk-jr.vercel.app/)
+
+### Project Links
+- 📁 **Repository**: [github.com/derksKCodes/email-extractor](https://github.com/derksKCodes/email-extractor)
 
 ---
 
